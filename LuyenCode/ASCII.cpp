@@ -1,4 +1,4 @@
-#include<stdio.h> //ddd
+#include<stdio.h> //testthaydoi
 int main(){
 	printf("DEC\tHEX\tCHAR\n");
 	printf("====================\n");
