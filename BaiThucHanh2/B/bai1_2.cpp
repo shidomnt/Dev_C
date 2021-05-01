@@ -29,7 +29,6 @@ int main(){
         else
         printf("co 28 ngay");
         break;
-        default: printf(" so nhap khong phai thang");
     }
     getch();
 }

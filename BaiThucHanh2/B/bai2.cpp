@@ -25,7 +25,6 @@ int main(){
         break;
         case 9:printf("Chin");
         break;
-        default:printf("So vua nhap khong phai so 0-9!");
     }
     getch();
 }
