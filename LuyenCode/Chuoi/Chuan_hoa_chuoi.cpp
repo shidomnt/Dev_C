@@ -22,13 +22,11 @@ int main(){
             else break;
         }
     }
-    printf("\nLoc dau cach: %s",string);
     //dem so tu trong chuoi
     int dem=1;
     for(int i=0;i<length;i++){
         if(string[i]==32&&string[i+1]!=32) dem++;
     }
-    printf("\nChuoi co %d tu",dem);
     //chi viet hoa chu dau tien cua moi tu
     strlwr(string);
     if(!(string[0]>=65&&string[0]<=90)) string[0]-=32;
@@ -37,6 +35,6 @@ int main(){
         if(!(string[i+1]>=65&&string[+1]<=90))
         string[i+1]-=32;
     }
-    printf("\nSau khi chi viet hoa chu cai dau: %s",string);
+    printf("\nSau khi chuan hoa: %s",string);
     return 0;
 }
