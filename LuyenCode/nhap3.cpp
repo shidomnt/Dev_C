@@ -1,6 +1,9 @@
 #include<stdio.h>
-#include<math.h>
+#include<conio.h>
 int main(){
-    float a;
-    printf("%.5f",sqrt(2));
+    int number;
+    char c[]={tran quang ha};
+    scanf("%d",&number);
+    printf("Size of %d= %d\nSize of %s= %d",number,sizeof(number),c,sizeof(c));
+    return 0;
 }
