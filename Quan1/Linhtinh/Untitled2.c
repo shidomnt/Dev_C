@@ -14,6 +14,7 @@ void check(char arr[], char a[], int j){
 }
 
 int main(){
+    //Nhap chuoi
     char str[100];
     printf("Nhap chuoi: ");
     fgets(str, sizeof(str), stdin);
