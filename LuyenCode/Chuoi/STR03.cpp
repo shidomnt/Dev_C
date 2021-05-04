@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+
 int tontai(char chuoi[],char kitu[]){
     //chuyen ve chu thuong
 
