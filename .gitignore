@@ -10,7 +10,6 @@
 !.vscode/c_cpp_properties.json
 *.code-workspace
 
-<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/vsco
 
 ### C++ ###
@@ -20,6 +19,3 @@
 *.app
 
 # End of https://www.toptal.com/developers/gitignore/api/c++
-=======
-# End of https://www.toptal.com/developers/gitignore/api/vsco
->>>>>>> quan
