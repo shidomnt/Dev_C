@@ -10,6 +10,9 @@ int main(){
     Dy=a1*c2-c1*a2;
     if(D==0){
         if(Dx+Dy==0){
+            if(c1+c2!=0)
+            printf("VONGHIEM");
+            else
             printf("VOSONGHIEM");
         }
         else
