@@ -12,5 +12,5 @@ int main(){
     for(int i = 0; i < sizeof (arr) / sizeof (int); i++){
         printf("Dia chi cua arr[%d] = %d\n", i, &arr[i]);
     }
- 
+    printf("%d",sizeof(char));
 }
