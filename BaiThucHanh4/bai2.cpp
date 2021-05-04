@@ -17,10 +17,9 @@ int main(){
     //Test con tro
 /*
     int length=strlen(str);
-    char *i=str+length-1;
-    for(;i>=str;i--)
-    printf("%c",*i);
+    for(int i=1;i<=length;i++)
+    printf("%c",*(str+length-i));
 */
-    printf("%s",strrev(str));
+    //printf("%s",strrev(str));
     getch();
 }
