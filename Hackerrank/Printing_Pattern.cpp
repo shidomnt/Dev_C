@@ -23,7 +23,7 @@ int main()
     }
     for(int i=0;i<canh;i++){
         for(int j=0;j<canh;j++){
-            printf("%2d",array[i][j]);
+            printf("%d ",array[i][j]);
         }
         printf("\n");
     }
