@@ -1,16 +1,21 @@
 #include <stdio.h>
- 
-int main(){
-    // Khai báo mảng có 5 phần tử
-    int arr[] = {1, 2, 3, 4, 5};
- 
-    printf("Dia chi cua mang arr = %d\n", &arr);
-    printf("Gia chi cua mang arr = %d\n", arr);
-    // Thử in địa chỉ của từng phần tử
-    // sizeof (arr): Kích thước của mảng
-    // sizeof (int): Kích thước của kiểu int
-    for(int i = 0; i < sizeof (arr) / sizeof (int); i++){
-        printf("Dia chi cua arr[%d] = %d\n", i, &arr[i]);
+#include <stdlib.h>
+void bin(int a,int *binary){
+    int i=15;
+    while(a/2!=0){
+        *(binary+i)=a%2;
+        a/=2;
+        i--;
     }
-    printf("%d",sizeof(char));
+    *(binary+i)=a%2;
+}
+int main()
+{
+   int a=65535;
+   int *binary;
+   binary=(int*) calloc(16,sizeof(int));
+   bin(a,binary);
+   for(int i=0;i<15;i++)
+   printf("%d",binary[i]);
+   return(0);
 }
