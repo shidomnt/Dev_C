@@ -21,7 +21,7 @@ int main(){
             if(ten[i][j-1]==32){
                 ten[i][j]-=32;
             }
-            if((ten[i][j]>122||ten[i][j]<97)&&(ten[i][j]>90||ten[i][j]<65)&&ten[i][j]!=32){
+            if((ten[i][j]>122||ten[i][j]<97)&&(ten[i][j]>90||ten[i][j]<65)&&ten[i][j]!=32&&ten[i][j]=='\0'){
                 int a=j;
                 for(a; a<strlen(ten[i]);a++){
                     ten[i][a]=ten[i][a+1];
