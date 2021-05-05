@@ -3,11 +3,13 @@
 #include <math.h>
 #include <stdlib.h>
 //Complete the following function.
+//Ham tinh to hop
 int C(int k, int n) {
     if (k == 0 || k == n) return 1;
     if (k == 1) return n;
     return C(k - 1, n - 1) + C(k, n - 1);
 }
+//Ham chuyen tu thap phan sang nhi phan
 void bin(int a,int *binary){
     int i=15;
     while(a/2!=0){
@@ -17,6 +19,7 @@ void bin(int a,int *binary){
     }
     *(binary+i)=a%2;
 }
+//Ham tinh AND
 int andb(int *binary1,int *binary2){
     int dec[16];
     for(int i=0;i<16;i++){
@@ -32,6 +35,7 @@ int andb(int *binary1,int *binary2){
     }
     return kq;
 }
+//Ham tinh OR
 int orb(int *binary1,int *binary2){
     int dec[16];
     for(int i=0;i<16;i++){
@@ -47,6 +51,7 @@ int orb(int *binary1,int *binary2){
     }
     return kq;
 }
+//Ham tinh XOR
 int xorb(int *binary1,int *binary2){
     int dec[16];
     for(int i=0;i<16;i++){
@@ -62,6 +67,7 @@ int xorb(int *binary1,int *binary2){
     }
     return kq;
 }
+//Ham sap xep chen
 void sapxep(int a[],int t){
     for(int i=1;i<t;i++){
         int j=i-1;
@@ -73,6 +79,7 @@ void sapxep(int a[],int t){
         a[j+1]=temp;
     }
 }
+//Tim max nho hon k
 int timmax(int a[],int t,int k){
     int max=0;
     for(int i=0;i<t;i++){
@@ -84,8 +91,9 @@ int timmax(int a[],int t,int k){
     }
     return max;
 }
+
 void calculate_the_maximum(int n, int k) {
-  //Write your code here.
+  //Khai bao mang chua gia tri AND OR XOR 
   int t=C(2,n);
   int aand[t];
   int aor[t];
@@ -93,12 +101,14 @@ void calculate_the_maximum(int n, int k) {
   int i=0;
   for(int a=1;a<n;a++){
       for(int b=a+1;b<=n;b++){
+        //Khai bao mang chua gia tri nhi phan cho a va b
         int *binary1;
         binary1=(int*) calloc(16,sizeof(int));
         int *binary2;
         binary2=(int*) calloc(16,sizeof(int));
         bin(a,binary1);
         bin(b,binary2);
+        //Tinh toan logic va luu gia tri vao mang AND OR XOR
         aand[i]=andb(binary1, binary2);
         aor[i]=orb(binary1, binary2);
         axor[i]=xorb(binary1, binary2);
