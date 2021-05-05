@@ -67,18 +67,6 @@ int xorb(int *binary1,int *binary2){
     }
     return kq;
 }
-//Ham sap xep chen
-void sapxep(int a[],int t){
-    for(int i=1;i<t;i++){
-        int j=i-1;
-        int temp=a[j+1];
-        while(j>=0&&temp<a[j]){
-            a[j+1]=a[j];
-            j--;
-        }
-        a[j+1]=temp;
-    }
-}
 //Tim max nho hon k
 int timmax(int a[],int t,int k){
     int max=0;
@@ -117,9 +105,6 @@ void calculate_the_maximum(int n, int k) {
         free(binary2);
       }
   }
-  sapxep(aand,t);
-  sapxep(aor,t);
-  sapxep(axor,t);
   printf("%d\n",timmax(aand,t,k));
   printf("%d\n",timmax(aor,t,k));
   printf("%d\n",timmax(axor,t,k));
