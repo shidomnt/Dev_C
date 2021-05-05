@@ -3,17 +3,10 @@
 #include <math.h>
 #include <stdlib.h>
 //Complete the following function.
-int giaithua(int n){
-    int gt=1;
-    for(int i=2;i<=n;i++){
-        gt*=i;
-    }
-    return gt;
-}
-int tohopchap2(int n){
-    int ts=giaithua(n);
-    int ms=giaithua(n-2)*giaithua(2);
-    return ts/ms;
+int C(int k, int n) {
+    if (k == 0 || k == n) return 1;
+    if (k == 1) return n;
+    return C(k - 1, n - 1) + C(k, n - 1);
 }
 void bin(int a,int *binary){
     int i=15;
@@ -93,7 +86,7 @@ int timmax(int a[],int t,int k){
 }
 void calculate_the_maximum(int n, int k) {
   //Write your code here.
-  int t=tohopchap2(n);
+  int t=C(2,n);
   int aand[t];
   int aor[t];
   int axor[t];
