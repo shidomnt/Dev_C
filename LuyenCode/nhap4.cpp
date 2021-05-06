@@ -3,9 +3,10 @@
 #include <math.h>
 #include <stdlib.h>
 int main() {
-    int n=0;
-    n^=n;
-    printf("%d",n);
-
+    char string[30],str[30];
+    scanf("%[][5][a-z ]",string);
+    fgets(str,sizeof(str),stdin);
+    printf("%s\n",string);
+    printf("%s\n",str);
     return 0;
 }
