@@ -6,6 +6,10 @@ int main(){
 	printf("Nhap vao so co 3 chu so: ");
 	scanf("%d",&a);
 	int t=a/100,c=(a%100)/10,d=a%10;
+	//Giải thích:
+	//Số abc( không phải a * b * c, mà là số có 3 chữ số: a: hàng trăm, b: chục, c: đơn vị)
+	//Số abc nếu có a^3 + b^3 + c^3 == abc => thõa mãn
+	//Các số có tính chất như vậy đc gọi là số amstrong/ số tự mãn
 	if(pow(t,3)+pow(c,3)+pow(d,3)==a)
 	printf("So %d co tong lap phuong cua cac chu so bang chinh no",a);
 	else
