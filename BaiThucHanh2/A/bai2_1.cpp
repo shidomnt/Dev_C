@@ -10,6 +10,7 @@ int main(){
 	//Số abc( không phải a * b * c, mà là số có 3 chữ số: a: hàng trăm, b: chục, c: đơn vị)
 	//Số abc nếu có a^3 + b^3 + c^3 == abc => thõa mãn
 	//Các số có tính chất như vậy đc gọi là số amstrong/ số tự mãn
+	//Số amstrong có 3 chữ số gồm : 153 , 370 , 371 , 407
 	if(pow(t,3)+pow(c,3)+pow(d,3)==a)
 	printf("So %d co tong lap phuong cua cac chu so bang chinh no",a);
 	else
