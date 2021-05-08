@@ -19,7 +19,7 @@ int main(){
     int n=0;
     int sl_space = space_count(string,a,&n);
     for(int i=0;i<=n;i++)
-    printf("%d ",a[i])
+    printf("%d ",a[i]);
     
     return 0;
     
