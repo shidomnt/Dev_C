@@ -17,5 +17,6 @@
 *.exe
 *.out
 *.app
+*.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/c++
