@@ -170,7 +170,7 @@ int main() {
 
 
 
-    
+/* 
     printf("\nNhap so luong sinh vien: ");
     scanf("%d",&n);
     nhap(list_of_students,n);
@@ -192,5 +192,6 @@ int main() {
     puts("NU");
     xuat(female,f);
     ghepdoi(male,m,female,f);
+*/
     return 0;
 }
