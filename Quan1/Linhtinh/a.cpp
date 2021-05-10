@@ -1,14 +1,16 @@
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
-int tongBinhPhuong(int a){
-    if(a==0){
-        return 0;
-    } else return pow(a,2)+tongBinhPhuong(a-1);
+int xoaDauCachDauCau(char arr[]){
+    int i;
+    for(i=0;i<strlen(arr);i++){
+            arr[i]= arr[i+1];            
+        } 
+    if(arr[0]==32) return xoaDauCachDauCau(arr);
 }
 int main(){
-    int a=10, L=11, s;
-    s=tongBinhPhuong(a);
-    printf("%d",s);
+    char arr[]= "   asfasf";
+    if(arr[0]==32) xoaDauCachDauCau(arr);
+    printf("%s", arr);
     return 0;
 }
