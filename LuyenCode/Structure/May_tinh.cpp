@@ -19,7 +19,7 @@ Sau đó in các thông tin đó ra màn hình sao cho đẹp mắt nhất :x
 #include <stdlib.h>
 #include <conio.h>
 typedef struct MONITOR{
-    bool power;
+    char power[10];
     float brightness;
 }MONITOR;
 typedef struct CPU{
@@ -38,38 +38,26 @@ void nhap(PC *a,int n=1){
     printf("\n======== NHAP CAU HINH PC ========");
     for(int i=0;i<n;i++){
         printf("\n--- Man hinh ---");
-        printf("\nNhap trang thai (tat - false || true - mo):");
-        scanf("%d",&a->monitor.power);
+        printf("\nNhap trang thai :");
+        fflush(stdin);
+        scanf("%s",a->monitor.power);
         printf("\nNhap do sang: ");
         scanf("%f",&a->monitor.brightness);
         printf("\n-- Main Board --");
         printf("\nNhap ten Main Board: ");
+        fflush(stdin);
         scanf("%29[^\n]",a->mainboard.name);
         printf("\nNhap thong tin CPU: ");
         printf("\n\tNhap ten CPU: ");
+        fflush(stdin);
         scanf("%29[^\n]",a->mainboard.cpu.name);
         printf("\n\tNhap dung luong bo nho CACHE: ");
         scanf("%d",&a->mainboard.cpu.cache);
     }
     system("cls");
 }
-void menu(){
-    system("cls");
-    printf("\n========================================================\n");
-    printf("|                      CAU HINH PC                       |\n");
-    printf("|========================================================|\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|                           |                            |\n");
-    printf("|========================================================|\n");
-}
 int main() {
-    menu();
+    PC a[1];
+    nhap(a);
     return 0;
 }
