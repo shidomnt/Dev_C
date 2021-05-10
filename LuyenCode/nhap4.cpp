@@ -1,36 +1,49 @@
 #include<stdio.h>
-#include<math.h>
+#include<string.h>
 #include<stdbool.h>
-bool kiemtra(long n){
-    for(int i=2;i<=sqrt(n);i++)
-        if(n%i==0)
-            return false;
-    return true;
+#include<stdlib.h>
+#include<math.h>
+void daonguocchuoi(char *string){
+    char b[strlen(string)];
+    int k=0;
+    for(int i=strlen(string)-1;i>=0;i--){
+        b[k]=string[i];
+        k++;
+    }
+    for(int i=0;i<=strlen(b);i++){
+        string[i]=b[i];
+    }
 }
+void inttoa(int n,char *string){
+   int i=0;
+   while(n/10!=0){
+      string[i] = n%10 + '0';
+      n/=10;
+      i++;
+   }
+   string[i] = n + '0';
+   string[i+1]=NULL;
+   daonguocchuoi(string);
+}
+bool kiemtra(char *string){
+     for(int i=0;i<strlen(string)/2;i++){
+         if(string[i]!=string[strlen(string)-i-1])
+         return false;
+     }
+     return true;
+}
+
 int main(){
-    int n;
-    scanf("%d",&n);
-    long a[n][2];
-    long max=0;
-    for(int i=0;i<n;i++)
-        for(int j=0;j<2;j++){
-            scanf("%li",&a[i][j]);
-            if(a[i][j]>max&&j==1) max = a[i][j];
-        }
-    long b[max];
-    int i;
-    int dem=0;
-    for(i=2;i<=max;i++){
-        if(kiemtra(i)){
-            b[dem]=i;
-            dem++;
-        }
-    }
-    for(int j=0;j<n;j++){
-        int pos1=0,pos2=dem;
-        while(b[pos1]<a[j][0]) pos1++;
-        while(b[pos2]>a[j][1]) pos2--;
-        printf("%d\n",pos2-pos1+1);
-    }
-    
+   int n;
+   while(scanf("%d",&n)){
+      int dem=0;
+    	for(long long i=pow(10,n-1);i<pow(10,n);i++){
+      char *string = (char*) malloc(sizeof(char)*20);
+      inttoa(i,string);
+      if(kiemtra(string)) 
+      dem++;
+		}
+      printf("%d\n",dem);
+   }
+   return 0;
 }
