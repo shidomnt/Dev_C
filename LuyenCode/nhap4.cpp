@@ -1,27 +1,24 @@
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <stdbool.h>
-int a[100];
-void xuat(int *a,int n){
-   for(int i=0;i<n;i++)
-   printf("%d ",a[i]);
-   printf("\n");
+#include<stdio.h>
+#define max 15
+unsigned long long tribo(int n){
+    if(n==0||n==1)
+        return 0;
+    else if(n==2)
+        return 1;
+    else
+        return tribo(n-3) + tribo(n-2) + tribo(n-1);
 }
-void hoanvi(int n,int k){
-   for(int i=1;i<=n;i++){
-      a[k]=i;
-      if(k==n-1){
-         xuat(a,n);
-      }
-      else
-      hoanvi(n,k+1);
-   }
-
-}
-int main() {
-   hoanvi(3,0);
-   return 0;
+int main(){
+   	unsigned long long a[max];
+    for(int i=0;i<max;i++){
+        a[i]=tribo(i);
+    }
+    unsigned long long n;
+    while(scanf("%llu",&n)){
+        for(int i=0;i<max;i++)
+            if(a[i]>=n){
+               printf("%llu\n",a[i]);
+               break;
+            }
+    }
 }
