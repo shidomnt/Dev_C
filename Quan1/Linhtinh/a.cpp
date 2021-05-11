@@ -1,16 +1,31 @@
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
-int xoaDauCachDauCau(char arr[]){
-    int i;
-    for(i=0;i<strlen(arr);i++){
-            arr[i]= arr[i+1];            
-        } 
-    if(arr[0]==32) return xoaDauCachDauCau(arr);
+
+void chuyenNhiPhanDao(int *a, long i){
+    while (i != 0)
+    {
+        *a=i%2;
+        a++;
+        i/=2;
+    } a++;
 }
+
+void demSoDoiXung(int n){
+    long i= pow(10,n-1), LENGTH= pow(10,n)-1;
+    for(i;i< 1005;i++){
+        int arr[32], *a= arr;
+        chuyenNhiPhanDao(a,i);
+        int j=0;
+        for(j;j<sizeof(arr);j++){
+            printf("%d", arr[j]);
+        } printf("\n");
+    }
+}
+
 int main(){
-    char arr[]= "   asfasf";
-    if(arr[0]==32) xoaDauCachDauCau(arr);
-    printf("%s", arr);
+    int n;
+    scanf("%d", &n);
+    demSoDoiXung(n);
     return 0;
 }

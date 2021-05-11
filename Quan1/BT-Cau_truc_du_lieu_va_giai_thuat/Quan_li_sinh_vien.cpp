@@ -2,50 +2,69 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
+#include<windows.h>
 
-//INFORMATIONS
-struct ADMINISTRATOR
+//SUBJECTS
+struct SUBJECTS
 {
+    float toan, van, anh;
+};
+
+//STUDENTS
+struct STUDENTS
+{
+    char name[50];
+    int age;
+    SUBJECTS sub;
     char tk[20];
     char mk[20];
 };
-typedef ADMINISTRATOR admin;
+
+//CLASS
+struct CLASS
+{
+    STUDENTS hs[24];
+};
 
 //MENU
 void menu(){
     printf("          PHAN MEM THI TRAC NGHIEM\n");
     printf("********************************************\n");
-    printf("1. ");
-    printf("");
-    printf("");
-    printf("");
-    printf("");
-    printf("");
-    printf("");
+    printf("1. a");
+    printf("2. b");
+    printf("3. c");
+    printf("4. d");
+    printf("5. e");
 }
 
 //LOGIN
 void login(){
     char tk1[20],mk1[20];
-    char tk[20]="admin";
-    char mk[20]="00000";
+    char tk[]="admin";
+    char mk[]="00000";
     printf("\n****** Nhap ten dang nhap va mat khau ******");
     printf("\nTK: "); fflush(stdin);
-    fgets(tk1, sizeof(tk1), stdin);
-    printf("\nMK: "); fflush(stdin);
-    fgets(mk1, sizeof(mk1), stdin);
+    scanf("%s", &tk1);
+    printf("MK: "); fflush(stdin);
+    scanf("%s", &mk1);
     if ( strcmp(tk,tk1)==0 && strcmp(mk,mk1)==0)
     {
+        system("cls");
         menu();
     } else {
-        printf("\nSai ten dang nhap hoac mat khau !");
-        printf("\nVui long dang nhap lai (Bam phim bat ki)");
-        getchar(); login();
+        char c;
+        printf("\n--> Sai ten dang nhap hoac mat khau !");
+        printf("\nBam phim Enter de dang nhap lai & phim 0 de thoat --");
+        c= getchar(); if(c=='0') exit(0); 
+        system("cls");
+        login();
     }
     
 }
 
 int main(){
+    system("cls");
     login();
+    CLASS lop[4];
     return 0;
 }
