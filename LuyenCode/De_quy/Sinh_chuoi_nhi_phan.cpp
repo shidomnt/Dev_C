@@ -10,18 +10,19 @@ void xuat(int *a,int n){
    printf("%d ",a[i]);
    printf("\n");
 }
-void hoanvi(int n,int k){
-   for(int i=1;i<=n;i++){
-      a[k]=i;
-      if(k==n-1){
-         xuat(a,n);
+//K : do rong
+void sinh_chuoi_nhi_phan(int k, int n){
+   for(int i=0;i<=1;i++){
+      a[n]=i;
+      if(n==k-1){
+         xuat(a,k);
       }
       else
-      hoanvi(n,k+1);
+      sinh_chuoi_nhi_phan(k,n+1);
    }
 
 }
 int main() {
-   hoanvi(3,0);
+   sinh_chuoi_nhi_phan(3,0);
    return 0;
 }
