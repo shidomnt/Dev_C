@@ -32,7 +32,7 @@ typedef struct town town;
 
 
 void print_all_packages(town t) {
-
+	
 }
 
 void send_all_acceptable_packages(town* source, int source_office_index, town* target, int target_office_index) {	
@@ -69,6 +69,7 @@ int main()
 			towns[i].offices[j].packages = (package*)malloc(sizeof(package)*towns[i].offices[j].packages_count);
             //Vòng lặp nhập thông tin cho từng package
 			for (int k = 0; k < towns[i].offices[j].packages_count; k++) {
+				//Cấp bộ nhớ cho xâu id
 				towns[i].offices[j].packages[k].id =(char*) malloc(sizeof(char) * MAX_STRING_LENGTH);
 				scanf("%s", towns[i].offices[j].packages[k].id);
 				scanf("%d", &towns[i].offices[j].packages[k].weight);
