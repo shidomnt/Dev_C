@@ -4,21 +4,15 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <stdbool.h>
-void sapxep(char *string){
-    int length=strlen(string);
-    for(int i=0;i<length-1;i++)
-        for(int j=i+1;j<length;j++){
-            if(string[j]<string[i]){
-                char temp=string[j];
-                string[j]=string[i];
-                string[i]=temp;
-            }
-        }
+void swap(long *a,long *b){
+    long temp = (*a);
+    (*a) = (*b);
+    (*b) = (*a);
 }
 int main() {
-    char a[30];
-    gets(a);
-    sapxep(a);
-    puts(a);
+    long a=4;
+    long b=8;
+    swap(&a,&b);
+    printf("%li %li",a,b);
     return 0;
 }
