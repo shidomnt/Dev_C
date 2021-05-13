@@ -18,7 +18,7 @@ int main(){
     char key[]="123abc";
     char matkhau[30];
     printf("Vui long nhap mat khau: ");
-    fflush(stdout);
+    fflush(stdin);
     scanf("%s",&matkhau);
     while(strcmp(key,matkhau)!=0){
         printf("Nhap sai!Vui long nhap lai: ");

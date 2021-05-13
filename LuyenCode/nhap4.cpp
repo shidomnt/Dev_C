@@ -1,93 +1,121 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<math.h>
 #include<stdbool.h>
-#define max 10000
-//Xoa ki tu
-void deletechar(char *string,int *length,int pos){
-    for(int i=pos;i<(*length);i++){
-        string[i]=string[i+1];
+bool check;
+int atoint(char *a){
+    int length=strlen(a);
+    int k=0;
+    int s=0;
+    for(int i=length-1;i>=0;i--){
+        s+=(a[i]-'0')*pow(10,k);
+        k++;
     }
-    (*length)--;
+    return s;
 }
-//Loc cac ki tu dac biet con sot lai
-void filter(char *string,int *length){
-    for(int i=0;i<(*length);i++){
-        char c=string[i];
-        if((c<48 && c>57)||(c>57 && c<97)||(c<97 && c>122))
-            deletechar(string,length,i);
-    }
-}
-//Sap xep chuoi
-void sapxep(char *string){
-    int length=strlen(string);
-    for(int i=0;i<length-1;i++)
-        for(int j=i+1;j<length;j++){
-            if(string[j]<string[i]){
-                char temp=string[j];
-                string[j]=string[i];
-                string[i]=temp;
-            }
-        }
-}
-//Dua chu hoa -> chu thuong
-void lowercase(char *string){
-    for(int i=0;i<strlen(string);i++){
-        char c=string[i];
-        if(c>=65 && c<=90)
-            string[i]+=' ';
-    }
-}
-//Dem so lan xuat hien cua ki tu c trong chuoi string
-int demc(char *string,char c){
-    int dem=0;
-    char *ptr = strchr(string,c);
-    while((*ptr) == c){
+int demcs(int a){
+    int dem=1;
+    while(a>10){
+        a/=10;
         dem++;
-        ptr++;
     }
     return dem;
 }
-int main(){
-    char string[max];
-    scanf("%[^\n]",string);
-    //Doi chu hoa -> chu thuong
-    lowercase(string);
-    /*
-    Sap xep thu tu theo bang ma ASCII :
-    1. mot so ki tu dac biet (bao gom ca dau cach) 
-    2. chu so 
-    3. 1 so ki tu dac biet khac 
-    4. chu thuong
-    */
-    sapxep(string);
-    char *ptr=string;
-    //Bo qua cac ki tu dac biet o dau tien
-    while((*ptr)<'0')
-        ptr++;
-    //ptr dang tro den phan chuoi bat dau = so
-    //Loc cac ki tu dac biet con sot lai
-    int length = strlen(ptr);
-    filter(ptr,&length);
-    //ptr tro den vung nho chi bao gom chu so - chu thuong
-    char copy[length];
-    //Sao chep khong lap lai cac phan tu cua chuoi ptr dang tro toi vao chuoi copy
-    int dem=0;
-    for(int i=0;i<length;i++){
-        if(ptr[i]==ptr[i+1])
-            continue;
-        else{
-            copy[dem]=ptr[i];
-            dem++;
+void daonguoc(char *a){
+    int left=0;
+    int right=strlen(a)-1;
+    while(left<=right){
+        char temp = a[left];
+        a[left] = a[right];
+        a[right] = temp;
+        left++;
+        right--;
+    }
+}
+void inttoa(int a,char *b){
+    int i=0;
+    while(a>10){
+        b[i]=(a%10)+'0';
+        a/=10;
+        i++;
+    }
+    b[i]=a+'0';
+    daonguoc(b);
+}
+void sapxep(void *d,int n,const char *f){
+    if(!strcmp(f,"int")){
+        int *a = (int*) d;
+        for(int i=0;i<n-1;i++)
+        for(int j=i+1;j<n;j++){
+            if(a[i]<a[j]){
+                a[i]=a[i]^a[j];
+                a[j]=a[i]^a[j];
+                a[i]=a[i]^a[j];
+            }
         }
     }
-    //Dem so lan xuat hien cua tung ki tu trong chuoi copy va luu vao mang count
-    int count[dem];
-    for(int i = 0;i<dem;i++){
-        count[i]=demc(ptr,copy[i]);
+    else{
+        if(check){
+            char *a = (char*) d;
+            for(int i=0;i<n-1;i++)
+            for(int j=i+1;j<n;j++){
+                if(a[i]>a[j]){
+                    a[i]=a[i]^a[j];
+                    a[j]=a[i]^a[j];
+                    a[i]=a[i]^a[j];
+                }
+            }
+        }
+        else{
+            char *a = (char*) d;
+            for(int i=0;i<n-1;i++)
+            for(int j=i+1;j<n;j++){
+                if(a[i]<a[j]){
+                    a[i]=a[i]^a[j];
+                    a[j]=a[i]^a[j];
+                    a[i]=a[i]^a[j];
+                }
+            }
+        }
     }
-    //In ket qua
-    for(int i=0;i<dem;i++){
-        printf("%c %d\n",copy[i],count[i]);
+}
+int sapxepocs(int a){
+    if(a<0){
+        check=true;
+        a=abs(a);
     }
+    int n=demcs(a)+1;
+    char b[n];
+    for(int i=0;i<n;i++)
+    b[i]=NULL;
+    inttoa(a,b);
+    sapxep(b,strlen(b),"char");
+    if(check==false)
+    return atoint(b);
+    else
+    return atoint(b)*(-1);
+}
+void sapxepcs(int *a,int n){
+    for(int i=0;i<n;i++){
+        check=false;
+        a[i]=sapxepocs(a[i]);
+    }
+}
+void nhap(int *a,int n){
+    for(int i=0;i<n;i++)
+        scanf("%d",&a[i]);
+}
+void xuat(int *a,int n){
+    for(int i=0;i<n;i++)
+        printf("%d ",a[i]);
+}
+int main(){
+    int n;
+    scanf("%d",&n);
+    int a[n];
+    nhap(a,n);
+    sapxepcs(a,n);
+    sapxep(a,n,"int");
+    xuat(a,n);
 }
