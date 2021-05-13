@@ -1,60 +1,121 @@
 #include<stdio.h>
-#include<stdbool.h>
-#include<math.h>
+#include<string.h>
 #include<stdlib.h>
-void nhap(long a[],long n){
-    for(long i=0;i<n;i++)
-        scanf("%li",&a[i]);
+#include<math.h>
+#include<stdbool.h>
+bool check;
+int atoint(char *a){
+    int length=strlen(a);
+    int k=0;
+    int s=0;
+    for(int i=length-1;i>=0;i--){
+        s+=(a[i]-'0')*pow(10,k);
+        k++;
+    }
+    return s;
 }
-void swap(long *a,long *b){
-    long temp = *a;
-    *a = *b;
-    *b = temp;
+int demcs(int a){
+    int dem=1;
+    while(a>10){
+        a/=10;
+        dem++;
+    }
+    return dem;
 }
-long partition(long *a,long low,long high){
-    long pivot = a[high];
-    long left = low;
-    long right = high - 1;
-    while(true){
-        while(left <= right && a[left] > pivot)
-            left++;
-        while(left <= right && a[right] < pivot)
-            right--;
-        if(left > right)
-            break;
-        swap(&a[left],&a[right]);
+void daonguoc(char *a){
+    int left=0;
+    int right=strlen(a)-1;
+    while(left<=right){
+        char temp = a[left];
+        a[left] = a[right];
+        a[right] = temp;
         left++;
         right--;
     }
-    swap(&a[left],&a[high]);
-    return left;
 }
-void sort(long *a,long low, long high){
-    if(low<high){
-        long pivot = partition(a,low,high);
-        sort(a,low,pivot-1);
-        sort(a,pivot+1,high);
+void inttoa(int a,char *b){
+    int i=0;
+    while(a>10){
+        b[i]=(a%10)+'0';
+        a/=10;
+        i++;
     }
+    b[i]=a+'0';
+    daonguoc(b);
+}
+void sapxep(void *d,int n,const char *f){
+    if(!strcmp(f,"int")){
+        int *a = (int*) d;
+        for(int i=0;i<n-1;i++)
+        for(int j=i+1;j<n;j++){
+            if(a[i]<a[j]){
+                a[i]=a[i]^a[j];
+                a[j]=a[i]^a[j];
+                a[i]=a[i]^a[j];
+            }
+        }
+    }
+    else{
+        if(check){
+            char *a = (char*) d;
+            for(int i=0;i<n-1;i++)
+            for(int j=i+1;j<n;j++){
+                if(a[i]>a[j]){
+                    a[i]=a[i]^a[j];
+                    a[j]=a[i]^a[j];
+                    a[i]=a[i]^a[j];
+                }
+            }
+        }
+        else{
+            char *a = (char*) d;
+            for(int i=0;i<n-1;i++)
+            for(int j=i+1;j<n;j++){
+                if(a[i]<a[j]){
+                    a[i]=a[i]^a[j];
+                    a[j]=a[i]^a[j];
+                    a[i]=a[i]^a[j];
+                }
+            }
+        }
+    }
+}
+int sapxepocs(int a){
+    if(a<0){
+        check=true;
+        a=abs(a);
+    }
+    int n=demcs(a)+1;
+    char b[n];
+    for(int i=0;i<n;i++)
+    b[i]=NULL;
+    inttoa(a,b);
+    sapxep(b,strlen(b),"char");
+    if(check==false)
+    return atoint(b);
+    else
+    return atoint(b)*(-1);
+}
+void sapxepcs(int *a,int n){
+    for(int i=0;i<n;i++){
+        check=false;
+        a[i]=sapxepocs(a[i]);
+    }
+}
+void nhap(int *a,int n){
+    for(int i=0;i<n;i++)
+        scanf("%d",&a[i]);
+}
+void xuat(int *a,int n){
+    for(int i=0;i<n;i++)
+        printf("%d ",a[i]);
 }
 int main(){
-    long n;
-    scanf("%li",&n);
-    long a[n];
+    int n;
+    scanf("%d",&n);
+    int a[n];
     nhap(a,n);
-    sort(a,0,n-1);
-    long a1=0,b1=0;
-    long i;
-    for(i=0;i<n;i++){
-        if(a[i]==a[i+1]){
-            a1=a[i];
-            break;
-        }
-    }
-    for(long j=i+2;j<n;j++){
-        if(a[j]==a[j+1]){
-            b1=a[j];
-            break;
-        }
-    }
-    printf("%lli",a1*b1);
+    sapxepcs(a,n);
+    sapxep(a,n,"int");
+    xuat(a,n);
 }
