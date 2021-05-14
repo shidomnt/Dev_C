@@ -73,8 +73,6 @@ int main(){
     //Ham strrch - vi tri cuoi
 /*  strchr tra ve vi tri(dia chi) dau tien ma ki tu xuat hien trong chuoi
     -> vi tri= dia chi ki tu can tim - dia chi chuoi + 1
-    Phep toan voi bien khai bao kieu string thuc ra la phep toan voi dia chi cua no
-    strchr->con tro(diachi)-> so -> ki tu
 */
 /*
     char s[]="Tran Quang Ha";
