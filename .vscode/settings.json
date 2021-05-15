@@ -2,5 +2,6 @@
     "files.associations": {
         "stdio.h": "c",
         "string": "cpp"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }
