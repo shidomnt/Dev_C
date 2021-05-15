@@ -73,46 +73,125 @@ void back(){
 }
 
 void xetTH2(){
-    // if(arr[0]!='X'){
-    //     arr[0]='O';
-    //     KQ++;
-    //     showScreen();
-    // } else{
+    go();
+    if(arr[0]==' '){
+        arr[0]='O';
+        KQ++; back();
+        showScreen();
+    } else{
         arr[2]='O';
         back(); arr[X[1]]='X';
-        showScreen(); go();
+        showScreen();  arr[X[2]]='X'; go();
         if(arr[5] != 'X'){
             arr[5]='O';
             KQ++;
-        }
-        if(arr[5]=='X'){
-            arr[6]='O';
-            KQ++;
+            back(); 
+            showScreen();
+        } else{
+            
+            KQ++; arr[6]='O'; 
+            back(); 
+            showScreen();
         } 
-        back(); arr[X[2]]='X';
-        showScreen();
-//     }
+        
+    }
 }
 
-void xet(int X){
-    if(X<0 || X>8 || arr[X] !=' '){
+void xet(int x){
+    if(x<0 || x>8 || arr[x] !=' '){
         printf("Chi chon cac o trong !!");
         i--;
         showScreen();
         
     }
     else{ 
-        arr[X]='X';
-        if(X%2==0){
+        arr[x]='X';
+        if(X[0]%2==0){
             go();
             arr[6]='O'; back();
-            showScreen(); go();//Truong hop 1
+            showScreen(); arr[X[1]]='X';go();//Truong hop 1
+            if(arr[1]=='X'){
+                arr[0]='O'; back();
+                showScreen(); arr[X[2]]='X'; go();
+                if(arr[3]=='X'){
+                    arr[8]='O'; back();
+                    KQ++;
+                    showScreen();
+                } else{
+                    arr[3]='O'; back();
+                    KQ++;
+                    showScreen();
+                }
+
+            }
+            else if(arr[5]=='X'){
+                arr[8]='O'; back();
+                showScreen(); arr[X[2]]='X'; go();
+                if(arr[0]=='X'){
+                    arr[7]='O'; back();
+                    KQ++;
+                    showScreen();
+                } else{
+                    arr[0]='O'; back();
+                    KQ++;
+                    showScreen();
+                }
+
+            }
+
+            else if(arr[0]=='X'){
+                arr[1]='O'; back();
+                showScreen(); arr[X[2]]='X'; go();
+                if(arr[7] != 'X'){
+                    arr[7]=='O'; back();
+                    KQ++;
+                    showScreen();
+                } else{
+                    KQ=2; back();
+                    showScreen();
+                }
+            }
+            else if(arr[8]=='X'){
+                arr[5]='O'; back();
+                showScreen(); arr[X[2]]='X'; go();
+                if(arr[3] != 'X'){
+                    arr[3]=='O'; back(); 
+                    KQ++;
+                    showScreen();
+                } else{
+                    KQ=2; back();
+                    showScreen();
+                }
+            }
+
+            else if(arr[3]=='X'){
+                arr[7]='O'; back();
+                showScreen(); arr[X[2]]='X'; go();
+                if(arr[1]=='X'){
+                    arr[8]='O'; back();
+                    showScreen();
+                } else{
+                    arr[1]='O'; back();
+                    showScreen();
+                }
+            }
+            else if(arr[7]=='X'){
+                arr[3]='O'; back();
+                showScreen(); arr[X[2]]='X'; go();
+                if(arr[5]=='X'){
+                    arr[0]='O'; back();
+                    showScreen();
+                } else{
+                    arr[5]='O'; back();
+                    showScreen();
+                }
+            }
         }
 //******************************************************        
         else {
             go();
             arr[8]='O'; back();
-            showScreen(); go();//Truong hop 2
+            showScreen();//Truong hop 2
             xetTH2();
         }
     }
@@ -137,12 +216,11 @@ void showScreen(){
             
             xet(X[i]);
         }
-    } else printf("\n==> YOU LOSED");
+    } else if(KQ==2){
+        printf("\n==> DRAW");
+    }
+    else printf("\n==> YOU LOSED");
 }
-
-// void xetTH1(int X){
-    
-// }
 
 
 int main(){
