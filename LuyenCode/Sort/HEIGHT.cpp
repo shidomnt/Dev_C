@@ -1,3 +1,10 @@
+/*
+Lớp KC97 tại trường học Free Contest 
+có NN học sinh, các học sinh được đánh số 
+từ 1 đến N. Học sinh i có chiều cao là A[i] 
+i.Với mỗi học sinh i từ 1 đến N, hãy đếm xem 
+có bao nhiêu học sinh có chiều cao thấp hơn so với học sinh i.
+*/
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
