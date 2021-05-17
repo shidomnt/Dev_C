@@ -1,7 +1,9 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "string": "cpp"
+        "string": "cpp",
+        "list": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }
