@@ -6,6 +6,7 @@
 #include <stdbool.h>
 //Trung to ( 3* ( ( (5 - 2) * (7 + 1) ) - 6) )
 //Hau to 3 5 2 - 7 1 + * 6 - *
+//Truong hop tat ca la so nguyen, phep chia cung la phep chia nguyen
 typedef struct DT
 {
     char toantu;
