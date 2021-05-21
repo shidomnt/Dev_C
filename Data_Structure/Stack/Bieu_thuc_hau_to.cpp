@@ -5,7 +5,7 @@
 #include <conio.h>
 #include <stdbool.h>
 //Trung to ( 3* ( ( (5 - 2) * (7 + 1) ) - 6) )
-//Hau to 3 5 2 - 7 1 + * 6 - * 
+//Hau to 3 5 2 - 7 1 + * 6 - *
 typedef struct DT
 {
     char toantu;
@@ -35,7 +35,7 @@ DT Pop(Stack *stack);
 //Ham chuyen doi trung to -> hau to
 char *TTtoHT(char *Trung_To);
 //Ham tinh toan bieu thuc hau to
-int Calculator(Stack *stack,char pheptoan);
+int Calculator(Stack *stack, char pheptoan);
 int HT_Calculator(char *Hau_to);
 int main()
 {
@@ -46,7 +46,7 @@ int main()
     char *Bieu_thuc_hau_to = TTtoHT(Bieu_thuc_trung_to);
     printf("Bieu thuc trung to co dang: %s\n", Bieu_thuc_trung_to);
     printf("Bieu thuc hau to co dang: %s\n", Bieu_thuc_hau_to);
-    printf("Ket qua: %d",HT_Calculator(Bieu_thuc_hau_to));
+    printf("Ket qua: %d", HT_Calculator(Bieu_thuc_hau_to));
     free(Bieu_thuc_trung_to);
     free(Bieu_thuc_hau_to);
     return 0;
@@ -140,50 +140,56 @@ char *TTtoHT(char *Trung_To)
     return Hau_To;
 }
 //Ham tinh toan bieu thuc hau to
-//Hau to 3 5 2 - 7 1 + * 6 - * 
+//Hau to 3 5 2 - 7 1 + * 6 - *
 /*
 1.Gặp toán hạng thì thêm vào stack.
 2.Gặp toán tử thì lấy 2 toán hạng từ stack rồi thực hiện phép toán tương ứng
 rồi lưu lại vào stack.
 3.Chạy hết length of Hau_to thì trả về phần tử còn lại trong stack.
 */
-int Calculator(Stack *stack,char pheptoan){
+int Calculator(Stack *stack, char pheptoan)
+{
     int ketqua;
-    DT a,b;
+    DT a, b;
     b = Pop(stack);
     a = Pop(stack);
-    switch(pheptoan){
-        case '+':
+    switch (pheptoan)
+    {
+    case '+':
         ketqua = a.toanhang + b.toanhang;
         break;
-        case '-':
+    case '-':
         ketqua = a.toanhang - b.toanhang;
         break;
-        case '*':
+    case '*':
         ketqua = a.toanhang * b.toanhang;
         break;
-        case '/':
+    case '/':
         ketqua = a.toanhang / b.toanhang;
         break;
     }
     return ketqua;
 }
-int HT_Calculator(char *Hau_to){
+int HT_Calculator(char *Hau_to)
+{
     Stack stack;
     Stack_Init(&stack);
     DT temp;
     int length = strlen(Hau_to);
-    for(int i=0;i<length;i++){
+    for (int i = 0; i < length; i++)
+    {
         char c = Hau_to[i];
-        if(c == ' ')
-        continue;
-        else if(c > '0' && c<'9'){
+        if (c == ' ')
+            continue;
+        else if (c > '0' && c < '9')
+        {
             temp.toanhang = c - '0';
-            Push(&stack,temp);
+            Push(&stack, temp);
         }
-        else if (c == '+' || c == '-' || c == '*' || c == '/'){
-            temp.toanhang = Calculator(&stack,c);
-            Push(&stack,temp);
+        else if (c == '+' || c == '-' || c == '*' || c == '/')
+        {
+            temp.toanhang = Calculator(&stack, c);
+            Push(&stack, temp);
         }
     }
     temp = Pop(&stack);
