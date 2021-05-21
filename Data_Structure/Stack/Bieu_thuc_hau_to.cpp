@@ -98,6 +98,12 @@ DT Pop(Stack *stack)
     return data;
 }
 //Ham chuyen doi trung to -> hau to
+/*
+1.Gặp dấu mở ngoặc -> bỏ quả
+2.Gặp toán hạng -> ghi vào biểu thức hậu tố
+3.Gặp toán tử -> đưa vào stack
+4.Gặp dấu đóng ngoặc -> lấy toán tử trong stack, ghi vào biểu thức hậu tố
+*/
 char *TTtoHT(char *Trung_To)
 {
     int length = strlen(Trung_To);
