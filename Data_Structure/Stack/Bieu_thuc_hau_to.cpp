@@ -108,7 +108,7 @@ DT Pop(Stack *stack)
 char *TTtoHT(char *Trung_To)
 {
     int length = strlen(Trung_To);
-    char *Hau_To = (char *)calloc((strlen(Trung_To) + 1), sizeof(char));
+    char *Hau_To = (char *)calloc((length + 1), sizeof(char));
     Stack stack;
     Stack_Init(&stack);
     DT temp;
