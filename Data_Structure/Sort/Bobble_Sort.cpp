@@ -23,7 +23,7 @@ void Sort(int *a, int n)
     while (change || i != n - 1)
     {
         change = 0;
-        //Quét từ cuối lên đầu mảng, tìm phần tử nằm sai vị trí
+        //Quét từ cuối lên đầu mảng chưa được sắp xếp, tìm phần tử nằm sai vị trí
         for (int j = n - 1; j > i + 1; j--)
         {
             if (a[j - 1] > a[j])
