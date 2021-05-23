@@ -4,26 +4,31 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <stdbool.h>
-void swap(int *a,int *b){
+void swap(int *a, int *b)
+{
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 //Những phần tử sẽ được sắp xếp nổi lên trên
-void Sort(int *a, int n){
+void Sort(int *a, int n)
+{
     //i là số phần tử đã được sắp xếp
-    int i=0;
+    int i = 0;
     //change kiểm tra xem lần quét này có phần tử nào nằm sai vị trí không
-    int change=1;
+    int change = 1;
     //Lặp liên tục thao tác kiểm tra phần tử
     //Kết thúc khi không có phần tử nào nằm sai vị trí (change = 0)
     //Hoặc khi đã sắp xếp hết các phần tử ( i == n-1)
-    while(change || i!=n-1){
+    while (change || i != n - 1)
+    {
         change = 0;
         //Quét từ cuối lên đầu mảng, tìm phần tử nằm sai vị trí
-        for(int j=n-1;j>i+1;j--){
-            if(a[j-1]>a[j]){
-                swap(&a[j-1],&a[j]);
+        for (int j = n - 1; j > i + 1; j--)
+        {
+            if (a[j - 1] > a[j])
+            {
+                swap(&a[j - 1], &a[j]);
                 change = 1;
             }
         }
@@ -45,7 +50,7 @@ int main()
 {
     int n = 15;
     //scanf("%d",&n);
-    int a[n] = {0, 4, 8, 3, 1, 4, 7, 8, 2,9,12,89,46,78,23};
+    int a[n] = {0, 4, 8, 3, 1, 4, 7, 8, 2, 9, 12, 89, 46, 78, 23};
     //nhap(a,n);
     printf("\nTruoc: ");
     xuat(a, n);
