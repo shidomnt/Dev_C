@@ -99,7 +99,7 @@ void xetTH2(){
 
 void xet(int x){
     if(x<0 || x>8 || arr[x] !=' '){
-        printf("Chi chon cac o trong !!");
+        printf("Chi chon cac o trong !!"); Sleep(2000);
         i--;
         showScreen();
         
@@ -218,6 +218,8 @@ void showScreen(){
         }
     } else if(KQ==2){
         printf("\n==> DRAW");
+    } else if(KQ==3){
+        printf("Thieu nang vcl deo choi nua !");
     }
     else printf("\n==> YOU LOSED");
 }
