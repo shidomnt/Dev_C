@@ -3,6 +3,14 @@
 #include<windows.h>
 
 char board[9]={' ',' ',' ',' ',' ',' ',' ',' ',' '};
+int index;
+
+void resetBoard(){
+    int i;
+    for(i=0;i<9;i++){
+        board[i]=' ';
+    }
+}
 
 void showBoard(){
     system("cls");
@@ -52,6 +60,53 @@ int checkBoard(){
     }
 }
 
+int minimax(bool tf){
+    int max_val=-1000, min_val=1000;
+    int i,j,value=1;
+    int score[9]={1,1,1,1,1,1,1,1,1};
+    //check_board
+    if(checkBoard()==1){return 10;}
+    else if(checkBoard()==2){return -10;}
+    else if(checkBoard()==3){return 0;}
+    //vong lap
+    for(i=0;i<9;i++){
+        if(board[i]==' '){
+            if(min_val>max_val){
+                if(tf==true){
+                    board[i]='X';
+                    value= minimax(false);
+                } else{
+                    board[i]='O';
+                    value= minimax(true);
+                }
+                board[i]=' ';
+                score[i]=value;
+            }
+        }
+    }
+    //xet 2TH
+    if(tf== true){
+        max_val=-1000;
+        for(j=0;j<9;j++){
+            if(score[j]>max_val && score[j]!=1){
+                max_val=score[j];
+                index=j;
+            }
+        }
+        return max_val;
+    } else{
+        min_val=1000;
+        for(j=0;j<9;j++){
+            if(score[j]<min_val && score[j]!=1){
+                min_val=score[j];
+                index=j;
+            }
+        }
+        return min_val;
+    }
+
+}
+
 int pvp(int player){
     char point;
     int p;
@@ -68,9 +123,52 @@ int pvp(int player){
     return checkBoard();
 }
 
+int pvb(){
+    int i, p;
+    system("cls");
+    printf("\tChoose mode:\n1. Bot first\n2. You first\n>> "); scanf("%d", &i);
+    if(i==1){
+        board[4]='X';
+        showBoard();
+        printf("\nYour choice: "); scanf("%d", &p);
+        while(board[p-1]!=' ' || p>9 || p<1){
+            printf("Choose another one !");
+            printf("\nEnter your choice again: "); scanf("%d", &p);
+        }
+        board[p-1]='O';
+        showBoard();
+    }
+    else if(i==2){
+        showBoard();
+        printf("\nYour choice: "); scanf("%d", &p);
+        while(board[p-1]!=' ' || p>9 || p<1){
+            printf("Choose another one !");
+            printf("\nEnter your choice again: "); scanf("%d", &p);
+        }
+        board[p-1]='O';
+        showBoard();
+    }
+    while (true) //Bot now playing.....
+    {
+        minimax(true);
+        board[index]='X';
+        showBoard();
+        if(checkBoard()==1 || checkBoard()==2 || checkBoard()==3){
+            return checkBoard();
+            break;
+        }
+        printf("\nYour choice: "); scanf("%d", &p);
+        while(board[p-1]!=' ' || p>9 || p<1){
+            printf("Choose another one !");
+            printf("\nEnter your choice again: "); scanf("%d", &p);          
+        }
+        board[p-1]='O';
+        showBoard();
+    }
+}
 
 int main(){
-    system("cls");
+again: system("cls");
     printf("-------Welcome to XO game-------");
     printf("\t\nCHOOSE MODE:\n1. PvP\n2. PvB\n0. Exit\n>> ");
     int choice; scanf("%d", &choice);
@@ -89,12 +187,19 @@ int main(){
         } else if(winner==3){
             printf("\n>> Game draw !");
         }
+        Sleep(1000);
         break;
     }
     case 2:{// PvB
-        // while(winner==0){
-        //     winner= pvb();
-        // }
+        winner= pvb();
+        if(winner==1){
+            printf("\n>> Bot win the game !");
+        } else if(winner==2){
+            printf("\n>> Player 2 win the game !");
+        } else if(winner==3){
+            printf("\n>> Game draw !");
+        }
+        Sleep(1000);
     }
     case 0:
         break;
@@ -104,9 +209,17 @@ int main(){
     } 
     }
     
+    printf("\nPress any key to exit..\n(or 0 to play again) >> ");
+    int a; scanf("%d", &a);
+    switch (a)
+    {
+    case 0:{
+        resetBoard();
+        goto again;
+        break;
+    }
+    default:
+        break;
+    }
     return 0;
 }
-
-
-
-
