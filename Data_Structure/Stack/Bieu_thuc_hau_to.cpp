@@ -28,7 +28,7 @@ Node Create_Node(DT data);
 //Ham khoi tao stack
 void Stack_Init(Stack *stack);
 //Ham kiem tra stack rong
-int StackEmpty(Stack *stack);
+int Stack_Empty(Stack *stack);
 //Ham push - them phan tu vao stack
 void Push(Stack *stack, DT data);
 //Ham pop - lay phan tu ra khoi stack

@@ -21,7 +21,7 @@ typedef struct Stack
 } Stack;
 Node Create_Node(DT data);
 void Stack_Init(Stack *stack);
-int StackEmpty(Stack *stack);
+int Stack_Empty(Stack *stack);
 void Push(Stack *stack, DT data);
 DT Pop(Stack *stack);
 int main() {
