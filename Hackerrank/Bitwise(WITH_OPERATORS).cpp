@@ -2,6 +2,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include <conio.h>
 //Complete the following function.
 //Ham tinh to hop
 int C(int k, int n) {
@@ -46,6 +47,6 @@ int main() {
   
     scanf("%d %d", &n, &k);
     calculate_the_maximum(n, k);
- 
+ 	getch();
     return 0;
 }

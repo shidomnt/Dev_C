@@ -12,7 +12,7 @@ void merge(int *a, int left, int mid, int right)
     int i = left;
     int j = mid + 1;
     //Mảng temp lưu mảng a đã được sắp xếp
-    int temp[left + right + 1];
+    int temp[right + 1];
     //Lưu ý: k chạy trong đoạn [left,right]
     for (int k = left; k <= right; k++)
     {
@@ -23,7 +23,7 @@ void merge(int *a, int left, int mid, int right)
             j++;
             continue;
         }
-        //Nếu j vượt quá mid thì copy toàn bộ phần tử còn lại bên i vào temp
+        //Nếu j vượt quá right thì copy toàn bộ phần tử còn lại bên i vào temp
         if (j > right)
         {
             temp[k] = a[i];
@@ -50,7 +50,7 @@ void merge(int *a, int left, int mid, int right)
 }
 void merge_sort(int *a, int left, int right)
 {
-    //Thực hiện chia đôi mảng thành các mảng con cho đến khi mỗi mảng con chỉ còn 1 phần tử
+    //Thực hiện chia đôi liên tục mảng gốc thành các mảng con 
     if (left < right)
     {
         int mid = (left + right) / 2;
@@ -80,5 +80,6 @@ int main()
     merge_sort(a, 0, n - 1);
     printf("\nSau: ");
     xuat(a, n);
+    getch();
     return 0;
 }

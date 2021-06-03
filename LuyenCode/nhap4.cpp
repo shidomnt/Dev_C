@@ -4,35 +4,40 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <stdbool.h>
-void Xoa(char s[], int pos,int *length){
-    for(int i=pos;i<strlen(s);i++){
-        s[i]=s[i+1];
-    }
-    *length--;
-}
-void Chuan_hoa(char s[]){
-    int i = 0;
-    int length = strlen(s);
-    while(s[i]==' ')
-    Xoa(s,i,&length);
-    i=length-1;
-    while(s[i]==' '){
-        s[i]='\0';
-        i--;
-    }
-    for(i=0;i<length;i++){
-        if(s[i]==' '&&s[i+1]==' ')
-        Xoa(s,i,&length);
-        if((i==0 || s[i-1]==' ')&& (s[i]<122 && s[i]>97))
-        s[i]-=' ';
-    }
+void sort(int *a,int n){
+   int max = a[0];
+   int min = a[0];
+   for(int i =0;i<n;i++){
+      if(max<a[i])
+      max = a[i];
+      if(min>a[i])
+      min = a[i];
+   }
+   int k = max - min + 1;
+   int count[k];
+   for(int i = 0;i<k;i++)
+   count[i] = 0;
+   for(int i=0;i<n;i++)
+   count[a[i]-min]++;
+   for(int i=1;i<k;i++)
+   count[i]+=count[i-1];
+   int temp[n];
+   for(int i=0;i<n;i++){
+      temp[count[a[i]-min]-1] = a[i];
+      count[a[i]-min]--;
+   }
+   for(int i=0;i<n;i++)
+   a[i] = temp[i];
 }
 int main() {
-    char string[100];
-    printf("Nhap xau: ");
-    fflush(stdin);
-    gets(string);
-    Chuan_hoa(string);
-    puts(string);
-    return 0;
+   int n;
+   scanf("%d",&n);
+   int a[n];
+   for(int i=0;i<n;i++)
+   scanf("%d",&a[i]);
+   sort(a,n);
+   for(int i=0;i<n;i++)
+   printf("%d",a[i]);
+   getch();
+   return 0;
 }

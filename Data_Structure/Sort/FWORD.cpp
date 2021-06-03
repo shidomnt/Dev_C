@@ -2,8 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-
-//Con ham Try chua viet xong
+#define MAXh 500
+#define MAXw 30
+int try_list[MAXh];
+char suggest[MAXh][MAXw];
+int N, M, K;
+long X;
 void Swap(char *a, char *b)
 {
     char PtrTemp[strlen(a) + 1];
@@ -43,7 +47,7 @@ void Sort(char **array, int low, int high)
     }
 }
 //Ham nhap mang
-void Nhap(char **array, int size)
+void Nhap(char array[][MAXw], int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -52,30 +56,12 @@ void Nhap(char **array, int size)
     }
 }
 //Sinh to hop
-char Try(char **suggest, char **try_list, int M, int K, int c)
+char Try(int i)
 {
-    int r = 0;
-    for (int i = 0; i < M; i++)
-        for (int j = 0; j < K; j++)
-        {
-            try_list[r][c] = suggest[i][j];
-            if (c == M)
-                r++;
-            else
-                Try(suggest, try_list, M, K, c + 1);
-        }
-}
-//Nhap tay cac to hop
-void nhaptest(char **try_list, long r)
-{
-    for (long i = 0; i < r; i++)
-    {
-        fflush(stdin);
-        scanf("%[^\n]", try_list[i]);
-    }
+    
 }
 //Khoi phuc
-void Restore(char *source, char **suggest, int M, int K, long X)
+void Restore(char *source, char suggest[][MAXw], int M, int K, long X)
 {
     long r = pow(K, M);
     char **try_list = (char **)malloc(sizeof(char *) * r);
@@ -85,7 +71,6 @@ void Restore(char *source, char **suggest, int M, int K, long X)
         memset(try_list[i], '\0', sizeof(try_list[i]));
     }
     //Try(suggest,try_list,M,K,0);
-    nhaptest(try_list, r);
     Sort(try_list, 0, r - 1);
     for (int i = 0; i < M; i++)
     {
@@ -95,21 +80,20 @@ void Restore(char *source, char **suggest, int M, int K, long X)
 }
 int main()
 {
-    int N, M, K;
-    long X;
     scanf("%d %d %d %li", &N, &M, &K, &X);
     char *source = (char *)malloc(sizeof(char) * (N + 1));
     fflush(stdin);
     scanf("%[^\n]", source);
+    /*
     char **suggest = (char **)malloc(sizeof(char *) * M);
     for (int i = 0; i < M; i++)
         suggest[i] = (char *)malloc(sizeof(char) * (K + 1));
+    */
     Nhap(suggest, M);
     Restore(source, suggest, M, K, X);
     printf("%s", source);
     for (int i = 0; i < M; i++)
         free(suggest[i]);
-    free(suggest);
     free(source);
     return 0;
 }

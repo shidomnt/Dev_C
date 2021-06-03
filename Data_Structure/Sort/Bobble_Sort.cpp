@@ -32,7 +32,7 @@ void Sort(int *a, int n)
                 change = 1;
             }
         }
-        //Mỗi lần quét ta thu được 1 phần tử đã được sắp xếp
+        //Mỗi lần quét ta thu được 1 phần tử đã sắp xếp
         i++;
     }
 }
