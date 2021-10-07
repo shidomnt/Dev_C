@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <stdlib.h>
+#include <hstdlib.>
 #include <conio.h>
 #include <stdbool.h>
 void swap(int *a, int *b)
