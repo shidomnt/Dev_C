@@ -1,51 +1,82 @@
-#include<stdio.h>
-#include<string.h>
-int tontai(char chuoi[],char kitu[]){
-    //chuyen ve chu thuong
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-    for(int i=0;i<strlen(chuoi)-1;i++){
-        if(chuoi[i]>=65&&chuoi[i]<=90)
-            chuoi[i]+=' ';
-    }
+const int MAX_CHAR_LENGTH = 1001;
 
-    //dem so lan xuat hien
-    
-    int length=strlen(chuoi)-1;
-    int start;
-    if(strchr(chuoi,kitu[0])!=NULL)
-        start=strchr(chuoi,kitu[0])-chuoi;
-    else
-        start=0;
-    int dem=0;
-    for(int i=start;i<length;i++){
-        if(chuoi[i]==kitu[0])
-            dem++;
+char* ToLowerCase(char *string)
+{
+    int length = strlen(string);
+    for(int i = 0 ; i < length ; i++)
+    {
+        if(string[i] >= 'A' && string[i] <= 'Z')
+        {
+            string[i] += 'a' - 'A';
+        }
     }
-    return dem;
+    return string;
 }
-int main(){
-    //nhap chuoi
-    
-    char chuoi[100];
-    fgets(chuoi,sizeof(chuoi),stdin);
-    //nhap so lan tim
-    
-    int T;
-    scanf("%d",&T);
-    //nhap ki tu can tim
-    
-    char kitu[T][2];
-    for(int i=0;i<T;i++){
-        scanf("%s",&kitu[i]);
+
+int Counter(char* string, char character)
+{
+    int count = 0;
+    int length = strlen(string);
+    for(int i = 0 ; i < length ; i++)
+    {
+        if(string[i] == character)
+        count++;
     }
-    //chuyen ve chu thuong
-    
-    for(int i=0;i<T;i++){
-        if(kitu[i][0]>=65&&kitu[i][0]<=90)
-        kitu[i][0]+=' ';
+    return count;
+}
+
+int *CharCounter(char* string, int *charCodes, int size) {
+
+    int *result = (int*) malloc(sizeof(int)*size);
+
+    for(int i = 0 ; i < size ; i++)
+    {
+        result[i] = Counter(string, charCodes[i]);
     }
-    for(int i=0;i<T;i++){
-        printf("%d\n",tontai(chuoi,kitu[i]));
+
+    return result;
+}
+
+void input(int *array, int size)
+{
+    for(int i = 0 ; i < size ; i++)
+    {
+        char character;
+        scanf("%c",&character);
+        if(character >= 'A' && character <= 'Z')
+        character += 'a' - 'A';
+        array[i] = (int) character;
+        getchar();
     }
+}
+
+void output(int *array, int size)
+{
+    for(int i = 0 ; i < size ; i++)
+    {
+        printf("%d\n",array[i]);
+    }
+}
+
+int main() {
+
+    char *string = (char*) malloc(sizeof(char) * MAX_CHAR_LENGTH);
+    int testCaseSize = 0;
+
+    string = ToLowerCase(fgets(string,MAX_CHAR_LENGTH,stdin));
+    scanf("%d", &testCaseSize);
+
+    int *testCases = (int*) malloc(sizeof(int) * testCaseSize);
+    getchar();
+    input(testCases,testCaseSize);
+
+    int *result = CharCounter(string,testCases,testCaseSize);
+
+    output(result,testCaseSize);
+
     return 0;
 }

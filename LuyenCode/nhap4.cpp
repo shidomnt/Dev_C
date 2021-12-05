@@ -1,25 +1,17 @@
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <stdbool.h>
-void Nhap(int a[], int size)
-{
-	for (int i = 0; i < size; i++)
-		scanf("%d", &a[i]);
-}
-int Ghidiem(int a[], int size, int K)
-{
-	
+
+void forEach(int *array, int size, void (*pFuntion)(int item)) {
+	for(int i = 0 ; i < size ; i++) {
+		pFuntion(array[i]);
+	}
+	return;
 }
 
-int main()
-{
-	int N, K;
-	scanf("%d %d", &N, &K);
-	int a[N];
-	Nhap(a, N);
-	printf("%d", Ghidiem(a, N, K));
-	return 0;
+void Printer(int item) {
+	printf("%d",item);
+}
+
+int main() {
+	int array[] = {1,6,8,5,3,3};
+	forEach(array,6,Printer);
 }
